@@ -1,15 +1,24 @@
-﻿using UnityEngine;
+﻿
+
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
+public enum PlayerClass
+{
+    Knight,
+    Archer
+}
 public class PointClickMovement4Dir : MonoBehaviour
 {
+    public PlayerClass currentClass = PlayerClass.Knight;   // <<< ganti dari inspector
+
     [Header("Movement")]
     public float moveSpeed = 4f;
     public float stopDistance = 0.05f;
 
     [Header("Combat")]
-    public float attackRange = 0.6f;      // jarak berhenti ke musuh
-    public float attackCooldown = 0.6f;   // biar ga mukul tiap frame
+    public float attackRange = 0.6f;
+    public float attackCooldown = 0.6f;
     private float lastAttackTime = -999f;
 
     [Header("Clicking")]
@@ -17,10 +26,19 @@ public class PointClickMovement4Dir : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private LayerMask enemyMask;
 
+    [Header("Archer Settings")]
+    [SerializeField] private GameObject arrowPrefab;  // prefab panah
+    [SerializeField] private Transform shootOrigin;   // titik keluarnya panah
+    [SerializeField] private GameObject aimPrefab;
+    private bool isAiming = false;
+    private Vector2 aimDirection;
+    private GameObject currentAimGO;   // instance yang lagi nongol
+    [SerializeField] private float aimOffset = 0.7f;  // jarak dari player
+
     // 4 arah
     private Vector2 stage1Target;
     private Vector2 stage2Target;
-    private int moveStage = 0; // 0 = diam, 1 = ke stage1, 2 = ke stage2
+    private int moveStage = 0;
 
     // combat
     private Enemy currentEnemyTarget = null;
@@ -30,24 +48,98 @@ public class PointClickMovement4Dir : MonoBehaviour
     {
         HandleClick();
 
+        if (currentClass == PlayerClass.Archer)
+            HandleArcherAim();   // <--- tambahan ini
+
         if (isChasingEnemy)
-        {
             HandleChaseEnemy();
-        }
         else
-        {
-            HandleMove();   // movement biasa (klik tanah)
-        }
+            HandleMove();
+
+        // nanti di sini kita taruh HandleArcherAim();
     }
 
     void HandleClick()
     {
-        if (!Input.GetMouseButtonDown(0)) return;
+        // kalau archer → klik kiri JANGAN lock enemy
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (currentClass == PlayerClass.Archer)
+            {
+                // archer: klik kiri = cuma jalan ke tile biasa
+                HandleGroundClick();
+                return;
+            }
 
+            // knight: boleh klik enemy
+            HandleEnemyOrGroundClick();
+        }
+
+        // klik kanan bakal kita pakai buat archer aim di langkah berikutnya
+    }
+
+    //AIM
+    void HandleArcherAim()
+    {
+        // mulai aim
+        if (Input.GetMouseButtonDown(1))
+        {
+            isAiming = true;
+
+            // spawn prefab aim
+            if (aimPrefab != null && currentAimGO == null)
+            {
+                currentAimGO = Instantiate(aimPrefab, transform.position, Quaternion.identity);
+            }
+        }
+
+        // tahan buat ngarahin
+        if (isAiming && Input.GetMouseButton(1))
+        {
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 dir = (mouseWorld - transform.position);
+            dir.Normalize();
+
+            // snap ke 8 arah
+            aimDirection = SnapTo8Directions(dir);
+
+            // hitung posisi offset dari player
+            Vector3 offsetPos = (Vector2)transform.position + aimDirection * aimOffset;
+
+            if (currentAimGO != null)
+            {
+                currentAimGO.transform.position = offsetPos;
+
+                // rotasi supaya ngadep ke arah aim
+                float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+                currentAimGO.transform.rotation = Quaternion.Euler(0, 0, angle );
+            }
+        }
+
+        // lepas → tembak
+        if (isAiming && Input.GetMouseButtonUp(1))
+        {
+            ShootArrow();
+
+            isAiming = false;
+
+            // hapus prefab aim
+            if (currentAimGO != null)
+            {
+                Destroy(currentAimGO);
+                currentAimGO = null;
+            }
+        }
+    }
+
+
+    // ============ KNIGHT CLICK ===============
+    void HandleEnemyOrGroundClick()
+    {
         Vector3 m2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(m2.x, m2.y);
 
-        // 1) cek enemy dulu (PAKE IN PARENT ya)
+        // cek enemy dulu
         Collider2D enemyCol = Physics2D.OverlapPoint(mousePos2D, enemyMask);
         if (enemyCol != null)
         {
@@ -57,66 +149,62 @@ public class PointClickMovement4Dir : MonoBehaviour
                 currentEnemyTarget = enemy;
                 isChasingEnemy = true;
 
-                // kita langsung set tujuan ke tile tempat musuh berdiri
+                // bikin path 4 arah ke musuh
                 Vector3Int enemyCell = tilemap.WorldToCell(enemy.transform.position);
                 Vector3 enemyCenter = tilemap.GetCellCenterWorld(enemyCell);
-                Vector2 finalTarget = new Vector2(enemyCenter.x, enemyCenter.y);
+                SetFourDirPath(enemyCenter);
 
-                Vector2 current = transform.position;
-                float dx = Mathf.Abs(finalTarget.x - current.x);
-                float dy = Mathf.Abs(finalTarget.y - current.y);
-
-                if (dx >= dy)
-                {
-                    stage1Target = new Vector2(finalTarget.x, current.y);
-                    stage2Target = finalTarget;
-                }
-                else
-                {
-                    stage1Target = new Vector2(current.x, finalTarget.y);
-                    stage2Target = finalTarget;
-                }
-
-                moveStage = 1;
-
-                // cuma buat ngecek
                 Debug.Log("Klik enemy: " + enemy.name);
             }
-            return; // penting: jangan lanjut ke tanah
+            return;
         }
 
-        // 2) kalau bukan enemy → jalan biasa ke tile
+        // kalau bukan enemy → klik tanah biasa
+        HandleGroundClick();
+    }
+
+    // ============ GROUND CLICK (untuk dua class) ===============
+    void HandleGroundClick()
+    {
+        Vector3 m2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos2D = new Vector2(m2.x, m2.y);
+
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, 0f, groundMask);
         if (hit.collider != null)
         {
+            Vector3Int cellPos = tilemap.WorldToCell(hit.point);
+            Vector3 cellCenter = tilemap.GetCellCenterWorld(cellPos);
+            SetFourDirPath(cellCenter);
+
             // klik tanah = batalin chase
             currentEnemyTarget = null;
             isChasingEnemy = false;
-
-            Vector3Int cellPos = tilemap.WorldToCell(hit.point);
-            Vector3 cellCenter = tilemap.GetCellCenterWorld(cellPos);
-            Vector2 finalTarget = new Vector2(cellCenter.x, cellCenter.y);
-
-            Vector2 current = transform.position;
-            float dx = Mathf.Abs(finalTarget.x - current.x);
-            float dy = Mathf.Abs(finalTarget.y - current.y);
-
-            if (dx >= dy)
-            {
-                stage1Target = new Vector2(finalTarget.x, current.y);
-                stage2Target = finalTarget;
-            }
-            else
-            {
-                stage1Target = new Vector2(current.x, finalTarget.y);
-                stage2Target = finalTarget;
-            }
-
-            moveStage = 1;
         }
     }
 
-    // gerak biasa (klik tanah)
+    // bikin path 4 arah ke titik tertentu
+    void SetFourDirPath(Vector3 worldTarget)
+    {
+        Vector2 finalTarget = new Vector2(worldTarget.x, worldTarget.y);
+        Vector2 current = transform.position;
+        float dx = Mathf.Abs(finalTarget.x - current.x);
+        float dy = Mathf.Abs(finalTarget.y - current.y);
+
+        if (dx >= dy)
+        {
+            stage1Target = new Vector2(finalTarget.x, current.y);
+            stage2Target = finalTarget;
+        }
+        else
+        {
+            stage1Target = new Vector2(current.x, finalTarget.y);
+            stage2Target = finalTarget;
+        }
+
+        moveStage = 1;
+    }
+
+    // ============ movement biasa ===============
     void HandleMove()
     {
         if (moveStage == 0) return;
@@ -138,10 +226,9 @@ public class PointClickMovement4Dir : MonoBehaviour
         transform.position = newPos;
     }
 
-    // gerak khusus ke musuh
+    // ============ chase ke musuh (knight) ===============
     void HandleChaseEnemy()
     {
-        // kalau musuh sudah hilang / mati → balik ke mode biasa
         if (currentEnemyTarget == null)
         {
             isChasingEnemy = false;
@@ -149,29 +236,64 @@ public class PointClickMovement4Dir : MonoBehaviour
             return;
         }
 
-        // cek jarak ke musuh dulu
         float distToEnemy = Vector2.Distance(transform.position, currentEnemyTarget.transform.position);
         if (distToEnemy <= attackRange)
         {
-            // udah nyampe jarak pukul → berhenti dan serang
             moveStage = 0;
             TryAttack();
             return;
         }
 
-        // kalau belum nyampe → lanjutkan gerak 4 arah yang tadi kita set
         HandleMove();
     }
 
     void TryAttack()
     {
         if (currentEnemyTarget == null) return;
-
-        if (Time.time - lastAttackTime < attackCooldown)
-            return;
+        if (Time.time - lastAttackTime < attackCooldown) return;
 
         lastAttackTime = Time.time;
         currentEnemyTarget.TakeDamage(3);
         Debug.Log("Player hit " + currentEnemyTarget.name);
     }
+
+    Vector2 SnapTo8Directions(Vector2 inputDir)
+    {
+        Vector2[] dirs = new Vector2[]
+        {
+        Vector2.up,
+        Vector2.down,
+        Vector2.left,
+        Vector2.right,
+        new Vector2(1,1).normalized,
+        new Vector2(1,-1).normalized,
+        new Vector2(-1,1).normalized,
+        new Vector2(-1,-1).normalized
+        };
+
+        float bestDot = -999f;
+        Vector2 best = Vector2.up;
+        foreach (Vector2 d in dirs)
+        {
+            float dot = Vector2.Dot(inputDir, d);
+            if (dot > bestDot)
+            {
+                bestDot = dot;
+                best = d;
+            }
+        }
+        return best;
+    }
+
+    void ShootArrow()
+    {
+        if (arrowPrefab == null) return;
+
+        GameObject arrow = Instantiate(arrowPrefab, shootOrigin.position, Quaternion.identity);
+        ArrowProjectile ap = arrow.GetComponent<ArrowProjectile>();
+        ap.Launch(aimDirection);
+        Debug.Log("Arrow shot toward " + aimDirection);
+    }
+
+
 }
