@@ -8,9 +8,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground2D
   - Water
   - UI
+  - Enemy
   - 
   - 
   - 
@@ -25,9 +26,8 @@ TagManager:
   - 
   - 
   - 
-  - Layer 1
-  - Layer 2
-  - Layer 3
+  - 
+  - 
   - 
   - 
   - 
