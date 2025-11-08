@@ -1,6 +1,4 @@
-﻿
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public enum PlayerClass
@@ -20,6 +18,10 @@ public class PointClickMovement4Dir : MonoBehaviour
     public float attackRange = 0.6f;
     public float attackCooldown = 0.6f;
     private float lastAttackTime = -999f;
+
+    [Header("Damage")]
+    [SerializeField] private int knightDamage = 3;   // NEW: damage knight bisa diatur
+    [SerializeField] private int arrowDamage = 3;    // NEW: damage panah bisa diatur
 
     [Header("Clicking")]
     [SerializeField] private Tilemap tilemap;
@@ -48,90 +50,75 @@ public class PointClickMovement4Dir : MonoBehaviour
     private Enemy currentEnemyTarget = null;
     private bool isChasingEnemy = false;
 
+    private FourDirAnimator2D anim;
+
+    void Awake()
+    {
+        anim = GetComponent<FourDirAnimator2D>();
+    }
+
     void Update()
     {
         HandleClick();
 
         if (currentClass == PlayerClass.Archer)
-            HandleArcherAim();   // <--- tambahan ini
+            HandleArcherAim();
 
         if (isChasingEnemy)
             HandleChaseEnemy();
         else
             HandleMove();
-
-        // nanti di sini kita taruh HandleArcherAim();
     }
 
     void HandleClick()
     {
-        // kalau archer → klik kiri JANGAN lock enemy
         if (Input.GetMouseButtonDown(0))
         {
             if (currentClass == PlayerClass.Archer)
             {
-                // archer: klik kiri = cuma jalan ke tile biasa
                 HandleGroundClick();
                 return;
             }
-
-            // knight: boleh klik enemy
             HandleEnemyOrGroundClick();
         }
-
-        // klik kanan bakal kita pakai buat archer aim di langkah berikutnya
     }
 
     //AIM
     void HandleArcherAim()
     {
-        // mulai aim
         if (Input.GetMouseButtonDown(1))
         {
             isAiming = true;
-            chargeTimer = 0f;                           // ⚡ mulai charge
-            // spawn prefab aim
+            chargeTimer = 0f;
             if (aimPrefab != null && currentAimGO == null)
-            {
                 currentAimGO = Instantiate(aimPrefab, transform.position, Quaternion.identity);
-            }
         }
 
-        // tahan buat ngarahin
         if (isAiming && Input.GetMouseButton(1))
         {
-            chargeTimer += Time.deltaTime;              // ⚡ isi charge
+            chargeTimer += Time.deltaTime;
             float t = Mathf.Clamp01(chargeTimer / maxChargeTime);
-            float chargedRange = Mathf.Lerp(minArrowRange, maxArrowRange, t);
+            float _ = Mathf.Lerp(minArrowRange, maxArrowRange, t); // hanya untuk indikator range
 
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 dir = (mouseWorld - transform.position);
             dir.Normalize();
-
-            // snap ke 8 arah
             aimDirection = SnapTo8Directions(dir);
 
-            // hitung posisi offset dari player
             Vector3 offsetPos = (Vector2)transform.position + aimDirection * aimOffset;
 
             if (currentAimGO != null)
             {
                 currentAimGO.transform.position = offsetPos;
-
-                // rotasi supaya ngadep ke arah aim
                 float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-                currentAimGO.transform.rotation = Quaternion.Euler(0, 0, angle );
+                currentAimGO.transform.rotation = Quaternion.Euler(0, 0, angle);
             }
         }
 
-        // lepas → tembak
         if (isAiming && Input.GetMouseButtonUp(1))
         {
             ShootArrow();
-
             isAiming = false;
-
-            // hapus prefab aim
             if (currentAimGO != null)
             {
                 Destroy(currentAimGO);
@@ -140,14 +127,12 @@ public class PointClickMovement4Dir : MonoBehaviour
         }
     }
 
-
     // ============ KNIGHT CLICK ===============
     void HandleEnemyOrGroundClick()
     {
         Vector3 m2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(m2.x, m2.y);
 
-        // cek enemy dulu
         Collider2D enemyCol = Physics2D.OverlapPoint(mousePos2D, enemyMask);
         if (enemyCol != null)
         {
@@ -157,17 +142,13 @@ public class PointClickMovement4Dir : MonoBehaviour
                 currentEnemyTarget = enemy;
                 isChasingEnemy = true;
 
-                // bikin path 4 arah ke musuh
                 Vector3Int enemyCell = tilemap.WorldToCell(enemy.transform.position);
                 Vector3 enemyCenter = tilemap.GetCellCenterWorld(enemyCell);
                 SetFourDirPath(enemyCenter);
-
                 Debug.Log("Klik enemy: " + enemy.name);
             }
             return;
         }
-
-        // kalau bukan enemy → klik tanah biasa
         HandleGroundClick();
     }
 
@@ -184,13 +165,11 @@ public class PointClickMovement4Dir : MonoBehaviour
             Vector3 cellCenter = tilemap.GetCellCenterWorld(cellPos);
             SetFourDirPath(cellCenter);
 
-            // klik tanah = batalin chase
             currentEnemyTarget = null;
             isChasingEnemy = false;
         }
     }
 
-    // bikin path 4 arah ke titik tertentu
     void SetFourDirPath(Vector3 worldTarget)
     {
         Vector2 finalTarget = new Vector2(worldTarget.x, worldTarget.y);
@@ -261,22 +240,17 @@ public class PointClickMovement4Dir : MonoBehaviour
         if (Time.time - lastAttackTime < attackCooldown) return;
 
         lastAttackTime = Time.time;
-        currentEnemyTarget.TakeDamage(3);
-        Debug.Log("Player hit " + currentEnemyTarget.name);
+        currentEnemyTarget.TakeDamage(knightDamage); // NEW: pakai knightDamage
+        Debug.Log($"Player hit {currentEnemyTarget.name} for {knightDamage}");
     }
 
     Vector2 SnapTo8Directions(Vector2 inputDir)
     {
         Vector2[] dirs = new Vector2[]
         {
-        Vector2.up,
-        Vector2.down,
-        Vector2.left,
-        Vector2.right,
-        new Vector2(1,1).normalized,
-        new Vector2(1,-1).normalized,
-        new Vector2(-1,1).normalized,
-        new Vector2(-1,-1).normalized
+            Vector2.up, Vector2.down, Vector2.left, Vector2.right,
+            new Vector2(1,1).normalized, new Vector2(1,-1).normalized,
+            new Vector2(-1,1).normalized, new Vector2(-1,-1).normalized
         };
 
         float bestDot = -999f;
@@ -284,11 +258,7 @@ public class PointClickMovement4Dir : MonoBehaviour
         foreach (Vector2 d in dirs)
         {
             float dot = Vector2.Dot(inputDir, d);
-            if (dot > bestDot)
-            {
-                bestDot = dot;
-                best = d;
-            }
+            if (dot > bestDot) { bestDot = dot; best = d; }
         }
         return best;
     }
@@ -297,21 +267,18 @@ public class PointClickMovement4Dir : MonoBehaviour
     {
         if (arrowPrefab == null || shootOrigin == null) return;
 
-        // hitung range sesuai durasi charge
         float t = Mathf.Clamp01(chargeTimer / maxChargeTime);
         float chargedRange = Mathf.Lerp(minArrowRange, maxArrowRange, t);
 
         GameObject arrow = Instantiate(arrowPrefab, shootOrigin.position, Quaternion.identity);
         ArrowProjectile ap = arrow.GetComponent<ArrowProjectile>();
         if (ap != null)
+        {
+            ap.damage = arrowDamage;                  // NEW: set damage panah dari sini
             ap.Launch(aimDirection, chargedRange);
+        }
 
-        // reset timer setelah menembak
         chargeTimer = 0f;
-
-        Debug.Log($"Arrow shot dir {aimDirection} range {chargedRange:0.0}");
+        Debug.Log($"Arrow shot dir {aimDirection} range {chargedRange:0.0} dmg {arrowDamage}");
     }
-
-
-
 }
