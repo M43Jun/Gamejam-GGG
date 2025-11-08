@@ -30,6 +30,10 @@ public class PointClickMovement4Dir : MonoBehaviour
     [SerializeField] private GameObject arrowPrefab;  // prefab panah
     [SerializeField] private Transform shootOrigin;   // titik keluarnya panah
     [SerializeField] private GameObject aimPrefab;
+    [SerializeField] private float minArrowRange = 3f;
+    [SerializeField] private float maxArrowRange = 10f;
+    [SerializeField] private float maxChargeTime = 1.0f; // waktu tahan untuk capai range maksimal
+    private float chargeTimer = 0f;
     private bool isAiming = false;
     private Vector2 aimDirection;
     private GameObject currentAimGO;   // instance yang lagi nongol
@@ -85,7 +89,7 @@ public class PointClickMovement4Dir : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             isAiming = true;
-
+            chargeTimer = 0f;                           // ⚡ mulai charge
             // spawn prefab aim
             if (aimPrefab != null && currentAimGO == null)
             {
@@ -96,6 +100,10 @@ public class PointClickMovement4Dir : MonoBehaviour
         // tahan buat ngarahin
         if (isAiming && Input.GetMouseButton(1))
         {
+            chargeTimer += Time.deltaTime;              // ⚡ isi charge
+            float t = Mathf.Clamp01(chargeTimer / maxChargeTime);
+            float chargedRange = Mathf.Lerp(minArrowRange, maxArrowRange, t);
+
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 dir = (mouseWorld - transform.position);
             dir.Normalize();
@@ -287,13 +295,23 @@ public class PointClickMovement4Dir : MonoBehaviour
 
     void ShootArrow()
     {
-        if (arrowPrefab == null) return;
+        if (arrowPrefab == null || shootOrigin == null) return;
+
+        // hitung range sesuai durasi charge
+        float t = Mathf.Clamp01(chargeTimer / maxChargeTime);
+        float chargedRange = Mathf.Lerp(minArrowRange, maxArrowRange, t);
 
         GameObject arrow = Instantiate(arrowPrefab, shootOrigin.position, Quaternion.identity);
         ArrowProjectile ap = arrow.GetComponent<ArrowProjectile>();
-        ap.Launch(aimDirection);
-        Debug.Log("Arrow shot toward " + aimDirection);
+        if (ap != null)
+            ap.Launch(aimDirection, chargedRange);
+
+        // reset timer setelah menembak
+        chargeTimer = 0f;
+
+        Debug.Log($"Arrow shot dir {aimDirection} range {chargedRange:0.0}");
     }
+
 
 
 }
