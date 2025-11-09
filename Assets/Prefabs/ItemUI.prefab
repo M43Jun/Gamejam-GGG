@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6406945866878780825}
   - component: {fileID: 5427201860838076670}
   - component: {fileID: 8588246591499046132}
-  - component: {fileID: 6567340777290105927}
+  - component: {fileID: -6813357918300092737}
   m_Layer: 5
-  m_Name: Slot
+  m_Name: ItemUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ RectTransform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -89,7 +89,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &6567340777290105927
+--- !u!114 &-6813357918300092737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,11 +98,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1137285648510331548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2f595589d72ad24f96d9d8200dbf8c4, type: 3}
+  m_Script: {fileID: 11500000, guid: aff19b92f1c24cb46bc77397c75468e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 5427201860838076670}
-  itemParent: {fileID: 0}
-  itemPrefab: {fileID: -6813357918300092737, guid: 9e6a83f91c09b05498d46f494427e9d5,
-    type: 3}
-  currentItem: {fileID: 0}
+  icon: {fileID: 5427201860838076670}
