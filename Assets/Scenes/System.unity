@@ -260,6 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 92755210}
   - component: {fileID: 92755212}
+  - component: {fileID: 92755213}
   - component: {fileID: 92755211}
   m_Layer: 6
   m_Name: Sprites
@@ -359,7 +360,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 702c07392e59a7c4fb84f1a432505acb, type: 3}
+  m_Sprite: {fileID: 1324244360, guid: 56c9d6daa6ed80347b19fadd0a4fa28b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -370,6 +371,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &92755213
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92755209}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3252ef2f015a7a24094e2d4f1ae9274a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &107032035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -431,12 +453,17 @@ PrefabInstance:
     - target: {fileID: 5821511798993656287, guid: 257ed26a2b1cc0f488f56440bfd14bfd,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.8
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5821511798993656287, guid: 257ed26a2b1cc0f488f56440bfd14bfd,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.8
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5821511798993656287, guid: 257ed26a2b1cc0f488f56440bfd14bfd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8333334
       objectReference: {fileID: 0}
     - target: {fileID: 5821511798993656287, guid: 257ed26a2b1cc0f488f56440bfd14bfd,
         type: 3}
@@ -487,6 +514,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5821511798993656287, guid: 257ed26a2b1cc0f488f56440bfd14bfd,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
