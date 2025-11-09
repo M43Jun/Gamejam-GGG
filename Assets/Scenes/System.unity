@@ -359,8 +359,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 702c07392e59a7c4fb84f1a432505acb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -387,6 +386,11 @@ PrefabInstance:
     - target: {fileID: 3554571650346267670, guid: 257ed26a2b1cc0f488f56440bfd14bfd,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554571650346267670, guid: 257ed26a2b1cc0f488f56440bfd14bfd,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5787922467737566942, guid: 257ed26a2b1cc0f488f56440bfd14bfd,
@@ -457,7 +461,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3554571650346267670, guid: 257ed26a2b1cc0f488f56440bfd14bfd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1520854253}
   m_SourcePrefab: {fileID: 100100000, guid: 257ed26a2b1cc0f488f56440bfd14bfd, type: 3}
 --- !u!1 &117609762
 GameObject:
@@ -3996,6 +4004,26 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1520854252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3554571650346267670, guid: 257ed26a2b1cc0f488f56440bfd14bfd,
+    type: 3}
+  m_PrefabInstance: {fileID: 107032035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1520854253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520854252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf03f21c3565614186228d120547c4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 20
+  currentHP: 0
 --- !u!1 &1838043276
 GameObject:
   m_ObjectHideFlags: 0
@@ -4006,6 +4034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1838043278}
   - component: {fileID: 1838043277}
+  - component: {fileID: 1838043279}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -4025,7 +4054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3636c18bd420e45b53556d4ae5c624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 10
+  stats: {fileID: 11400000, guid: 049db82f5dc189543974eb497841736d, type: 2}
   currentHP: 0
 --- !u!4 &1838043278
 Transform:
@@ -4043,6 +4072,21 @@ Transform:
   - {fileID: 92755210}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1838043279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838043276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ddd08b61a5445489225b9b8ffc6fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player
+  obstacleTag: Obstacle
+  cellSize: 1
 --- !u!1 &2038883617
 GameObject:
   m_ObjectHideFlags: 0

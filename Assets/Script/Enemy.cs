@@ -1,22 +1,29 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int maxHP = 10;
-    public int currentHP;
+    [Header("Assign Stats Asset")]
+    public EnemyStats stats;   // ← ini yang nanti diisi SlimeStats / GoblinStats / WolfStats
+
+    [HideInInspector] public int currentHP;
 
     void Awake()
     {
-        currentHP = maxHP;
+        if (stats == null)
+        {
+            Debug.LogWarning($"Enemy '{name}' belum punya EnemyStats. Pakai fallback health=10.");
+            currentHP = 10;
+        }
+        else
+        {
+            currentHP = stats.health;
+        }
     }
 
     public void TakeDamage(int dmg)
     {
         currentHP -= dmg;
-        if (currentHP <= 0)
-        {
-            Die();
-        }
+        if (currentHP <= 0) Die();
     }
 
     void Die()
