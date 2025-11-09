@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b02fc213f1705e84c81aaee6da58d330
+guid: 4ef6fecc04362e84e9040aa3ab77a43a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,148 +97,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Side_Attack_Bow_0
+      name: SwordAttackSide_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 0
         y: 0
-        width: 36
-        height: 36
-      alignment: 9
-      pivot: {x: 0.50000006, y: 0.50000024}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53441099d4d537549b93b5de2a0a170f
-      internalID: -228538029
+      spriteID: 43793558b96fa8546816d1c1f8da9c4a
+      internalID: 538504382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Side_Attack_Bow_1
+      name: SwordAttackSide_1
       rect:
         serializedVersion: 2
-        x: 98
+        x: 64
         y: 0
-        width: 36
-        height: 36
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35152882d9455ba4892d62fad41ec3b0
-      internalID: -354970305
+      spriteID: 87dda6181ec01a04bb9b3b0f4659cc9f
+      internalID: -227883934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Side_Attack_Bow_2
+      name: SwordAttackSide_2
       rect:
         serializedVersion: 2
-        x: 190
+        x: 128
         y: 0
-        width: 36
-        height: 36
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dfb6069c34c38a47a10ba9e54c5afeb
-      internalID: 385366006
+      spriteID: 3c74c9d80f435f84ca07c55748c6220f
+      internalID: 1361577183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Side_Attack_Bow_3
+      name: SwordAttackSide_3
       rect:
         serializedVersion: 2
-        x: 282
+        x: 192
         y: 0
-        width: 36
-        height: 36
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be7ddbc4607c6434093744b0d786f1e7
-      internalID: 1812238460
+      spriteID: f8686e5d9c8b35c4d9416e796552d883
+      internalID: -663765179
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Side_Attack_Bow_4
+      name: SwordAttackSide_4
       rect:
         serializedVersion: 2
-        x: 374
+        x: 256
         y: 0
-        width: 36
-        height: 36
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33dcc3e2c501c6c4dba776ce6f5353b2
-      internalID: 208466108
+      spriteID: f65a40277afc9784bb3e7926c62936f4
+      internalID: -97580497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Side_Attack_Bow_5
+      name: SwordAttackSide_5
       rect:
         serializedVersion: 2
-        x: 466
+        x: 320
         y: 0
-        width: 36
-        height: 36
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b4be59256c2a63448b5253ccfe061a8
-      internalID: 2094879088
+      spriteID: b5b15535ad87a5143b257e5fb71017f9
+      internalID: 900925937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Side_Attack_Bow_6
+      name: SwordAttackSide_6
       rect:
         serializedVersion: 2
-        x: 558
+        x: 384
         y: 0
-        width: 36
-        height: 36
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2a690a0ed9122e4ea4ef37793db5c5e
-      internalID: 755765106
+      spriteID: 84071f0fd327fa548b01f9ce09c3a57c
+      internalID: 1680628357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordAttackSide_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404d8ebe075c4c84abd798955487088c
+      internalID: 99558451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordAttackSide_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 474ea20d73db6ba438b51a147c242fdc
+      internalID: 1403851747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordAttackSide_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74072ceebf337e245961bca5a1a1996e
+      internalID: 1717903339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordAttackSide_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfd7ac877ec16604f87230765b6aa717
+      internalID: 1936408853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordAttackSide_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b401e88cf808849a3c41c9099286d1
+      internalID: -677175475
       vertices: []
       indices: 
       edges: []
@@ -254,13 +359,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Side_Attack_Bow_0: -228538029
-      Side_Attack_Bow_1: -354970305
-      Side_Attack_Bow_2: 385366006
-      Side_Attack_Bow_3: 1812238460
-      Side_Attack_Bow_4: 208466108
-      Side_Attack_Bow_5: 2094879088
-      Side_Attack_Bow_6: 755765106
+      SwordAttackSide_0: 538504382
+      SwordAttackSide_1: -227883934
+      SwordAttackSide_10: 1936408853
+      SwordAttackSide_11: -677175475
+      SwordAttackSide_2: 1361577183
+      SwordAttackSide_3: -663765179
+      SwordAttackSide_4: -97580497
+      SwordAttackSide_5: 900925937
+      SwordAttackSide_6: 1680628357
+      SwordAttackSide_7: 99558451
+      SwordAttackSide_8: 1403851747
+      SwordAttackSide_9: 1717903339
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

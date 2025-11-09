@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0624ca7800adec641a5040b7dff9003b
+guid: 38c22c741f7cbbf4ebebd413ad05c42a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,127 +97,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Front_Attack_Bow_0
+      name: BowAttackBack_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 21
-        width: 32
-        height: 32
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d2b9987b3ec3bb4f8e1aa66690094b7
-      internalID: -1315040842
+      spriteID: 0d217badbe7a2534bbd72bb38f754503
+      internalID: -1397349940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Front_Attack_Bow_1
+      name: BowAttackBack_1
       rect:
         serializedVersion: 2
-        x: 118
-        y: 18
-        width: 36
-        height: 36
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70125fe0311845a49917cf58a94c48bd
-      internalID: -405334041
+      spriteID: c6ec300b7e635fe49aa5069d265a9fd7
+      internalID: 794975004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Front_Attack_Bow_2
+      name: BowAttackBack_2
       rect:
         serializedVersion: 2
-        x: 210
-        y: 18
-        width: 36
-        height: 36
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01efb6ade708bbd448806f55c92a1c17
-      internalID: 347708598
+      spriteID: 76626fe9d5b2f544cab11d92c0b5a93e
+      internalID: -817962218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Front_Attack_Bow_3
+      name: BowAttackBack_3
       rect:
         serializedVersion: 2
-        x: 302
-        y: 18
-        width: 36
-        height: 36
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5970e4563d4ac594d9c8674b3805488b
-      internalID: 1587944600
+      spriteID: ebd283a71bdfb1943beef38b3c1725ae
+      internalID: -1199022597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Front_Attack_Bow_4
+      name: BowAttackBack_4
       rect:
         serializedVersion: 2
-        x: 394
-        y: 18
-        width: 36
-        height: 36
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a62b6d2200ee704bb6b322f81659f28
-      internalID: 1734260355
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Front_Attack_Bow_5
-      rect:
-        serializedVersion: 2
-        x: 486
-        y: 18
-        width: 36
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75f585021a968eb48946a2a726766883
-      internalID: 1108721392
+      spriteID: f157773a455c21a4c98918abd5bf2e1f
+      internalID: -645933050
       vertices: []
       indices: 
       edges: []
@@ -233,12 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Front_Attack_Bow_0: -1315040842
-      Front_Attack_Bow_1: -405334041
-      Front_Attack_Bow_2: 347708598
-      Front_Attack_Bow_3: 1587944600
-      Front_Attack_Bow_4: 1734260355
-      Front_Attack_Bow_5: 1108721392
+      BowAttackBack_0: -1397349940
+      BowAttackBack_1: 794975004
+      BowAttackBack_2: -817962218
+      BowAttackBack_3: -1199022597
+      BowAttackBack_4: -645933050
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

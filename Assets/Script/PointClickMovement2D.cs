@@ -16,7 +16,7 @@ public class PointClickMovement4Dir : MonoBehaviour
 
     [Header("Combat")]
     public float attackRange = 0.6f;
-    public float attackCooldown = 0.6f;
+    public float attackCooldown = 1.2f;
     private float lastAttackTime = -999f;
 
     [Header("Damage")]
@@ -50,11 +50,13 @@ public class PointClickMovement4Dir : MonoBehaviour
     private Enemy currentEnemyTarget = null;
     private bool isChasingEnemy = false;
 
-    private FourDirAnimator2D anim;
+    [SerializeField] private FourDirAnimator2D fourDir;
+    [SerializeField] private Animator animator;
 
     void Awake()
     {
-        anim = GetComponent<FourDirAnimator2D>();
+        fourDir = GetComponent<FourDirAnimator2D>();
+        if (!animator) animator = GetComponent<Animator>() ?? GetComponentInChildren<Animator>(true);
     }
 
     void Update()
@@ -90,8 +92,13 @@ public class PointClickMovement4Dir : MonoBehaviour
         {
             isAiming = true;
             chargeTimer = 0f;
+            if (animator) animator.SetBool("IsShooting", true);
             if (aimPrefab != null && currentAimGO == null)
                 currentAimGO = Instantiate(aimPrefab, transform.position, Quaternion.identity);
+            // setelah aimDirection dihitung
+            if (fourDir != null) fourDir.ForceFace(aimDirection); // biar muka mengikuti arah aim
+            Debug.Log("IsShooting True" );
+
         }
 
         if (isAiming && Input.GetMouseButton(1))
@@ -113,6 +120,7 @@ public class PointClickMovement4Dir : MonoBehaviour
                 float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
                 currentAimGO.transform.rotation = Quaternion.Euler(0, 0, angle);
             }
+            Debug.Log("Harusnya Nembak");
         }
 
         if (isAiming && Input.GetMouseButtonUp(1))
@@ -124,7 +132,10 @@ public class PointClickMovement4Dir : MonoBehaviour
                 Destroy(currentAimGO);
                 currentAimGO = null;
             }
+            if (animator) animator.SetBool("IsShooting", false);
+            Debug.Log("Harusnya Nembak Selesai");
         }
+
     }
 
     // ============ KNIGHT CLICK ===============
@@ -167,6 +178,7 @@ public class PointClickMovement4Dir : MonoBehaviour
 
             currentEnemyTarget = null;
             isChasingEnemy = false;
+            animator.SetBool("IsAttacking", false);
         }
     }
 
@@ -220,6 +232,7 @@ public class PointClickMovement4Dir : MonoBehaviour
         {
             isChasingEnemy = false;
             moveStage = 0;
+            if (animator) animator.SetBool("IsAttacking", false);   // <— penting
             return;
         }
 
@@ -231,18 +244,39 @@ public class PointClickMovement4Dir : MonoBehaviour
             return;
         }
 
+        // di luar jangkauan serang, pastikan attack dimatikan
+        if (animator) animator.SetBool("IsAttacking", false);       // <— opsional tapi aman
         HandleMove();
     }
 
+
     void TryAttack()
     {
-        if (currentEnemyTarget == null) return;
+        if (currentEnemyTarget == null)
+        {
+            if (animator) animator.SetBool("IsAttacking", false);
+            return;
+        }
         if (Time.time - lastAttackTime < attackCooldown) return;
 
         lastAttackTime = Time.time;
-        currentEnemyTarget.TakeDamage(knightDamage); // NEW: pakai knightDamage
-        Debug.Log($"Player hit {currentEnemyTarget.name} for {knightDamage}");
+
+        Vector2 dir = (currentEnemyTarget.transform.position - transform.position).normalized;
+        if (fourDir != null) fourDir.ForceFace(dir);
+
+        if (animator) animator.SetBool("IsAttacking", true);
+
+        currentEnemyTarget.TakeDamage(3);
+
+        // jika musuh mati di serangan ini, hentikan animasi
+        if (currentEnemyTarget == null && animator)
+            animator.SetBool("IsAttacking", false);
+
+        Debug.Log("Player hit " + currentEnemyTarget?.name);
     }
+
+
+
 
     Vector2 SnapTo8Directions(Vector2 inputDir)
     {

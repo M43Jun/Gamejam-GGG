@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0624ca7800adec641a5040b7dff9003b
+guid: 43ad67c5408442349af8037c91f4db9c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,127 +97,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Front_Attack_Bow_0
+      name: MCIdle_Back_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 21
-        width: 32
-        height: 32
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d2b9987b3ec3bb4f8e1aa66690094b7
-      internalID: -1315040842
+      spriteID: a3b358ad380dd454c87192a59d00420f
+      internalID: 126620324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Front_Attack_Bow_1
+      name: MCIdle_Back_1
       rect:
         serializedVersion: 2
-        x: 118
-        y: 18
-        width: 36
-        height: 36
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70125fe0311845a49917cf58a94c48bd
-      internalID: -405334041
+      spriteID: 6664f0bd6cc36914089fc8a4e5386de7
+      internalID: 388327158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Front_Attack_Bow_2
+      name: MCIdle_Back_2
       rect:
         serializedVersion: 2
-        x: 210
-        y: 18
-        width: 36
-        height: 36
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01efb6ade708bbd448806f55c92a1c17
-      internalID: 347708598
+      spriteID: bab446c6653ad2a40a04ff4b9ff8a137
+      internalID: 722794040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Front_Attack_Bow_3
+      name: MCIdle_Back_3
       rect:
         serializedVersion: 2
-        x: 302
-        y: 18
-        width: 36
-        height: 36
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5970e4563d4ac594d9c8674b3805488b
-      internalID: 1587944600
+      spriteID: d241547cc3cf5e94bb5fd4a8c45f28f3
+      internalID: 1068237454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Front_Attack_Bow_4
+      name: MCIdle_Back_4
       rect:
         serializedVersion: 2
-        x: 394
-        y: 18
-        width: 36
-        height: 36
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a62b6d2200ee704bb6b322f81659f28
-      internalID: 1734260355
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Front_Attack_Bow_5
-      rect:
-        serializedVersion: 2
-        x: 486
-        y: 18
-        width: 36
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75f585021a968eb48946a2a726766883
-      internalID: 1108721392
+      spriteID: 63a5c5c2b6c86984386a7535486a7793
+      internalID: -317092818
       vertices: []
       indices: 
       edges: []
@@ -233,12 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Front_Attack_Bow_0: -1315040842
-      Front_Attack_Bow_1: -405334041
-      Front_Attack_Bow_2: 347708598
-      Front_Attack_Bow_3: 1587944600
-      Front_Attack_Bow_4: 1734260355
-      Front_Attack_Bow_5: 1108721392
+      MCIdle_Back_0: 126620324
+      MCIdle_Back_1: 388327158
+      MCIdle_Back_2: 722794040
+      MCIdle_Back_3: 1068237454
+      MCIdle_Back_4: -317092818
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

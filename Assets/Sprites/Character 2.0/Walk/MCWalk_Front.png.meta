@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0624ca7800adec641a5040b7dff9003b
+guid: 259bcaca6d2a5db46a7e9e3b7da405b0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,127 +97,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Front_Attack_Bow_0
+      name: MCWalk_Front_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 21
-        width: 32
-        height: 32
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d2b9987b3ec3bb4f8e1aa66690094b7
-      internalID: -1315040842
+      spriteID: 2943ea5f39f146c4187b3e2421bb2aaf
+      internalID: -1748101818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Front_Attack_Bow_1
+      name: MCWalk_Front_1
       rect:
         serializedVersion: 2
-        x: 118
-        y: 18
-        width: 36
-        height: 36
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70125fe0311845a49917cf58a94c48bd
-      internalID: -405334041
+      spriteID: 472092ddc99c741449db3f1a5dd757e9
+      internalID: 1255599561
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Front_Attack_Bow_2
+      name: MCWalk_Front_2
       rect:
         serializedVersion: 2
-        x: 210
-        y: 18
-        width: 36
-        height: 36
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01efb6ade708bbd448806f55c92a1c17
-      internalID: 347708598
+      spriteID: 5dcf0edc1b6d65c4989685d5f44c279f
+      internalID: 1532360474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Front_Attack_Bow_3
+      name: MCWalk_Front_3
       rect:
         serializedVersion: 2
-        x: 302
-        y: 18
-        width: 36
-        height: 36
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5970e4563d4ac594d9c8674b3805488b
-      internalID: 1587944600
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Front_Attack_Bow_4
-      rect:
-        serializedVersion: 2
-        x: 394
-        y: 18
-        width: 36
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a62b6d2200ee704bb6b322f81659f28
-      internalID: 1734260355
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Front_Attack_Bow_5
-      rect:
-        serializedVersion: 2
-        x: 486
-        y: 18
-        width: 36
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75f585021a968eb48946a2a726766883
-      internalID: 1108721392
+      spriteID: 1c139001389912347a157c158b483cbe
+      internalID: 6965669
       vertices: []
       indices: 
       edges: []
@@ -233,12 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Front_Attack_Bow_0: -1315040842
-      Front_Attack_Bow_1: -405334041
-      Front_Attack_Bow_2: 347708598
-      Front_Attack_Bow_3: 1587944600
-      Front_Attack_Bow_4: 1734260355
-      Front_Attack_Bow_5: 1108721392
+      MCWalk_Front_0: -1748101818
+      MCWalk_Front_1: 1255599561
+      MCWalk_Front_2: 1532360474
+      MCWalk_Front_3: 6965669
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
