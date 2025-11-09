@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4970947587853473858}
   - component: {fileID: 4513901385325570661}
   - component: {fileID: 5328024846883120746}
-  - component: {fileID: 1880710972450524110}
   - component: {fileID: 8041164081363625182}
   - component: {fileID: 2089807148737688103}
   - component: {fileID: 3703922602364258665}
@@ -92,18 +91,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1880710972450524110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6863711813095095925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac75f8e7e9367f4448870fef7570fa54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &8041164081363625182
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -168,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8e49a8299c55a4681bac3c93b07e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  itemData: {fileID: 11400000, guid: a0e9a4149a0201643a717f6fa0beb7cf, type: 2}
 --- !u!61 &3703922602364258665
 BoxCollider2D:
   m_ObjectHideFlags: 0
