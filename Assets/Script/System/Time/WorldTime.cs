@@ -22,7 +22,7 @@ namespace WorldTime
 
         private IEnumerator AddMinute()
         {
-            currentTime += TimeSpan.FromMinutes(1);
+            currentTime += TimeSpan.FromMinutes(0.1);
 
             if (currentTime.TotalMinutes >= WorldTimeConstants.MinutesInDay)
             {

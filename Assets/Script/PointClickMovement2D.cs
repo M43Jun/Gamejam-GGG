@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SmallHedge.SoundManager;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public enum PlayerClass
@@ -313,6 +314,7 @@ public class PointClickMovement4Dir : MonoBehaviour
         }
 
         chargeTimer = 0f;
+        SoundManager.PlaySound(SoundType.ArcherAttack);
         Debug.Log($"Arrow shot dir {aimDirection} range {chargedRange:0.0} dmg {arrowDamage}");
     }
 }
