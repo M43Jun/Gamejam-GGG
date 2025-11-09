@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ca3113896e75f47870302d41c87438, type: 3}
   m_Name: WolfStats
   m_EditorClassIdentifier: 
-  health: 10
-  movementSpeed: 3
-  attackSpeed: 1
-  damage: 2
+  health: 8
+  movementSpeed: 4
+  attackSpeed: 2
+  damage: 1
   attackRange: 1
-  chaseTriggerRange: 6
+  chaseTriggerRange: 7
   chasePersistRange: 10
