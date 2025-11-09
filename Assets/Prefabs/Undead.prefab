@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1342136877, guid: 33e39695421d2114e99417697af05e84, type: 3}
+  m_Sprite: {fileID: 2044510723, guid: 174d31e9e2db8394a8ec34f8969673ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 2221948200339211452}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3252ef2f015a7a24094e2d4f1ae9274a, type: 2}
+  m_Controller: {fileID: 9100000, guid: d2c29027b8b6d5349962090de3c57875, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 51553793408221674}
   - component: {fileID: 6174504790670997776}
   m_Layer: 6
-  m_Name: Goblin
+  m_Name: Undead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3636c18bd420e45b53556d4ae5c624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 4ddd816353079d44389596abb2b66800, type: 2}
+  stats: {fileID: 11400000, guid: fd46343579ad4584aaef0ce09c6cfb1d, type: 2}
   currentHP: 0
 --- !u!114 &6174504790670997776
 MonoBehaviour:
