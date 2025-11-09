@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de53abb1d1b0e74c9231cd0f95b51e4, type: 3}
   m_Name: Mana Potion
   m_EditorClassIdentifier: 
-  id: 1
-  itemName: Mana Potion
-  icon: {fileID: 21300000, guid: bcf0d436f8c01384f9e4c9ae8121f48c, type: 3}
-  buyPrice: 1
-  sellPrice: 1
+  id: 2
+  itemName: Bone
+  icon: {fileID: 21300000, guid: 4fa6f2b6703c9bf4e90258d4b5b9763f, type: 3}
+  buyPrice: 15
+  sellPrice: 10
   stats:
     healthRestore: 0
     damageBoost: 0
     defenseBoost: 0
-    speedBoost: 0
   description: 
-  itemType: 0

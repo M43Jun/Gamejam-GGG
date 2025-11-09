@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de53abb1d1b0e74c9231cd0f95b51e4, type: 3}
   m_Name: Health Potion
   m_EditorClassIdentifier: 
-  id: 0
-  itemName: Health Potion
-  icon: {fileID: 21300000, guid: 702c07392e59a7c4fb84f1a432505acb, type: 3}
+  id: 1
+  itemName: Meat
+  icon: {fileID: 21300000, guid: a7d882ed2910f894c9c373471b775391, type: 3}
   buyPrice: 50
   sellPrice: 25
   stats:
     healthRestore: 50
     damageBoost: 0
     defenseBoost: 0
-    speedBoost: 0
   description: 
-  itemType: 0
