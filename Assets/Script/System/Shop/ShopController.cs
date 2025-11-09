@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using SmallHedge.SoundManager;
 
 public class ShopController : MonoBehaviour
 {
@@ -88,6 +89,7 @@ public class ShopController : MonoBehaviour
 
     public void CloseShop()
     {
+        PlaySoundClick();
         shopPanel.SetActive(false);
         selectionPanel.SetActive(false);
         buyPanel.SetActive(false);
@@ -102,9 +104,17 @@ public class ShopController : MonoBehaviour
         selectionPanel.SetActive(false);
 
         if (isBuyTab)
+        {
             PopulateBuyPanel();
+            PlaySoundClick();
+        }
+
         else
+        {
             PopulateSellPanel();
+            PlaySoundClick();
+
+        }
     }
 
     // === POPULATE PANELS ===
@@ -143,6 +153,7 @@ public class ShopController : MonoBehaviour
     {
         if (InventoryController.Instance.SpendGold(item.buyPrice))
         {
+            SoundManager.PlaySound(SoundType.ItemSell);
             if (InventoryController.Instance.AddItemData(item))
                 Debug.Log($"Bought {item.itemName} for {item.buyPrice}G");
             else
@@ -165,9 +176,11 @@ public class ShopController : MonoBehaviour
 
     private void ConfirmSell()
     {
+        PlaySoundClick();
         if (itemToSell != null && InventoryController.Instance.RemoveItem(itemToSell))
         {
             InventoryController.Instance.AddGold(itemToSell.sellPrice);
+            SoundManager.PlaySound(SoundType.ItemSell);
             PopulateSellPanel();
         }
 
@@ -177,6 +190,7 @@ public class ShopController : MonoBehaviour
 
     private void CancelSell()
     {
+        PlaySoundClick();
         sellConfirmPanel.SetActive(false);
         itemToSell = null;
     }
@@ -190,5 +204,10 @@ public class ShopController : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
+    }
+
+    public void PlaySoundClick()
+    {
+        SoundManager.PlaySound(SoundType.CLickSound);
     }
 }

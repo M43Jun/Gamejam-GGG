@@ -81,6 +81,7 @@ public class EnemyGridChase2D : MonoBehaviour
 
         if (!shouldAggro)
         {
+            hasAggroed = false;
             SmoothAnimator(false);
             return; // idle
         }
@@ -132,10 +133,22 @@ public class EnemyGridChase2D : MonoBehaviour
         axisBias = 1 - axisBias;
     }
 
+    [SerializeField] private float firstAttackDelay = 0.8f; // jeda sebelum serangan pertama
+    private bool hasAggroed = false;
+
     void TryAttack()
     {
+        // waktu cooldown serangan (berdasarkan attackSpeed)
         float atkPerSec = (enemy.stats.attackSpeed > 0f) ? enemy.stats.attackSpeed : 1f;
         float cd = 1f / atkPerSec;
+
+        // jika baru pertama kali masuk mode serang, kasih jeda awal
+        if (!hasAggroed)
+        {
+            nextAttackTime = Time.time + firstAttackDelay;
+            hasAggroed = true;
+        }
+
         if (Time.time < nextAttackTime) return;
         nextAttackTime = Time.time + cd;
 
